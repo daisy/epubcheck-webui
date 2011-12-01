@@ -9,22 +9,20 @@ import java.util.Map;
 import org.daisy.validation.epubcheck.EpubcheckBackend;
 import org.daisy.validation.epubcheck.EpubcheckBackend.Issue;
 
-import play.data.Upload;
 import play.mvc.Controller;
 
 public class Application extends Controller {
-	
-	private static String TMPDIR = "/tmp/epubcheck/";
 
 	public static void index() {
 		render();
 	}
+
 	public static void validate(File input_file) {
 		List<Map<String, String>> results = runEpubcheck(input_file.getPath());
 		renderArgs.put("results", results);
 		render();
 	}
-	
+
 	private static List<Map<String, String>> runEpubcheck(String file) {
 		final List<Issue> issues = EpubcheckBackend.run(file);
 
@@ -38,7 +36,7 @@ public class Application extends Controller {
 			result.put("message", issue.txt);
 			results.add(result);
 		}
-		
+
 		return results;
 	}
 }
