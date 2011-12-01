@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,13 +9,24 @@ import java.util.Map;
 import org.daisy.validation.epubcheck.EpubcheckBackend;
 import org.daisy.validation.epubcheck.EpubcheckBackend.Issue;
 
+import play.data.Upload;
 import play.mvc.Controller;
 
 public class Application extends Controller {
+	
+	private static String TMPDIR = "/tmp/epubcheck/";
 
 	public static void index() {
-		final List<Issue> issues = EpubcheckBackend
-				.run("example-epub/9780316000000_MobyDick_r6.epub");
+		render();
+	}
+	public static void validate(File input_file) {
+		List<Map<String, String>> results = runEpubcheck(input_file.getPath());
+		renderArgs.put("results", results);
+		render();
+	}
+	
+	private static List<Map<String, String>> runEpubcheck(String file) {
+		final List<Issue> issues = EpubcheckBackend.run(file);
 
 		final List<Map<String, String>> results = new ArrayList<Map<String, String>>();
 		for (final Issue issue : issues) {
@@ -26,7 +38,7 @@ public class Application extends Controller {
 			result.put("message", issue.txt);
 			results.add(result);
 		}
-		renderArgs.put("results", results);
-		render();
+		
+		return results;
 	}
 }

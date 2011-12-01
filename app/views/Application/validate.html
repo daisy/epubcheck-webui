@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'epubcheck results' /}
+
+<h1>epubcheck results</h1>
+
+<table border='1'>
+	<tr>
+		<th>Type</th>
+		<th>File</th>
+		<th>Line</th>
+		<th>Position</th>
+		<th>Message</th>
+	</tr>
+#{list items:results, as:'result'}
+	<tr>
+	    <td>${result.type}</td>
+	    <td>${result.file}</td>
+	    <td>${result.lineNr}</td>
+	    <td>${result.position}</td>
+	    <td>${result.message}</td>
+	</tr>
+#{/list}
+</table>
