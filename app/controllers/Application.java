@@ -12,7 +12,6 @@ import org.daisy.validation.epubcheck.EpubcheckBackend.Issue;
 import play.mvc.Controller;
 
 public class Application extends Controller {
-
 	public static void index() {
 		render();
 	}
@@ -25,7 +24,6 @@ public class Application extends Controller {
 
 	private static List<Map<String, String>> runEpubcheck(String file) {
 		final List<Issue> issues = EpubcheckBackend.run(file);
-
 		final List<Map<String, String>> results = new ArrayList<Map<String, String>>();
 		for (final Issue issue : issues) {
 			final Map<String, String> result = new HashMap<String, String>();
@@ -36,7 +34,8 @@ public class Application extends Controller {
 			result.put("message", issue.txt);
 			results.add(result);
 		}
-
 		return results;
 	}
+	
+	
 }
