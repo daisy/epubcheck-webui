@@ -21,6 +21,8 @@ Requirements:
  * [http://code.google.com/p/daisy-pipeline/source/browse/?repo=sandbox#hg%2FEpubcheckBackend EpubcheckBackend]
  * [http://code.google.com/p/epubcheck/downloads/list epubcheck-3.0b3.jar]
 
+Build EpubcheckBackend from the command line and copy the jar into idpf-epubcheck/lib.
+
 The lib folder of idpf-epubcheck must contain the following:
 lib/
   commons-compress-1.2.jar
@@ -62,7 +64,7 @@ Curl should return the raw HTML of the first page of the epubcheck web UI (the f
 
 Now you can configure your appliation for public use.  
 
-Create a server ID:
+Create a server ID by running this command in the server's idpf-epubcheck directory:
 $ play id
 
 For our purposes, we'll use 'server01' as the ID.
@@ -89,4 +91,9 @@ $ sudo play start
 
 Open your browser, point to your public IP, and see if it works!
 
+## Troubleshooting
 
+### Error: Could not bind on port 80
+
+ * Did you open port 80?
+ * Is another process using port 80?  Check with the netstat command
