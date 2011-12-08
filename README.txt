@@ -1,7 +1,6 @@
 # idpf-epubcheck
 
 TODOs for this file:
- * update lib folder structure, remove redundancies
  * finalize required versions of play and epubcheck
 
 ## Overview
@@ -29,8 +28,8 @@ lib/
   epubcheckbackend.jar
   flute.jar
   jing.jar
-	sac.jar
-	saxon9he.jar
+  sac.jar
+  saxon9he.jar
 
 This can be accomplished by building the code locally using eclipse.
 
