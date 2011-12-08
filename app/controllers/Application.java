@@ -9,6 +9,9 @@ import java.util.Map;
 import org.daisy.validation.epubcheck.EpubcheckBackend;
 import org.daisy.validation.epubcheck.EpubcheckBackend.Issue;
 
+import play.Logger;
+import play.data.FileUpload;
+import play.libs.Codec;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -16,13 +19,20 @@ public class Application extends Controller {
 		render();
 	}
 
-	public static void validate(File input_file) {
-		List<Map<String, String>> results = runEpubcheck(input_file.getPath());
+	public static void validate(final FileUpload input_file) {
+		final File newFile = input_file.asFile(new File(play.Play.tmpDir, Codec
+				.UUID() + ".epub"));
+		final List<Map<String, String>> results = runEpubcheck(newFile
+				.getPath());
+		final boolean deleted = newFile.delete();
+		if (!deleted) {
+			Logger.warn("deletion of file failed: %s", newFile);
+		}
 		renderArgs.put("results", results);
 		render();
 	}
 
-	private static List<Map<String, String>> runEpubcheck(String file) {
+	private static List<Map<String, String>> runEpubcheck(final String file) {
 		final List<Issue> issues = EpubcheckBackend.run(file);
 		final List<Map<String, String>> results = new ArrayList<Map<String, String>>();
 		for (final Issue issue : issues) {
@@ -36,6 +46,4 @@ public class Application extends Controller {
 		}
 		return results;
 	}
-	
-	
 }
