@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'epubcheck results' /}
 
-<h1>epubcheck results for ${filename}</h1>
+<h1>epubcheck results for '<em>${filename}</em>'</h1>
 
 %{ if(results.size == 0) { }%
 	<h2>Epub-file is valid</h2>
