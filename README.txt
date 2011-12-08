@@ -26,18 +26,11 @@ Build EpubcheckBackend from the command line and copy the jar into idpf-epubchec
 The lib folder of idpf-epubcheck must contain the following:
 lib/
   commons-compress-1.2.jar
-  epubcheck-3.0b3.jar
   epubcheckbackend.jar
   flute.jar
   jing.jar
-  lib/
-    commons-compress-1.2.jar
-    flute.jar
-    jing.jar
-    sac.jar
-    saxon9he.jar
-    sac.jar
-    saxon9he.jar
+	sac.jar
+	saxon9he.jar
 
 This can be accomplished by building the code locally using eclipse.
 
