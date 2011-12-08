@@ -19,7 +19,12 @@ public class Application extends Controller {
 		render();
 	}
 
+	public static final String RESULTS = "results";
+	public static final String FILENAME = "filename";
+
 	public static void validate(final FileUpload input_file) {
+		final String origFileName = input_file.getFileName();
+		final String filename = new File(origFileName).getName();
 		final File newFile = input_file.asFile(new File(play.Play.tmpDir, Codec
 				.UUID() + ".epub"));
 		final List<Map<String, String>> results = runEpubcheck(newFile
@@ -28,7 +33,8 @@ public class Application extends Controller {
 		if (!deleted) {
 			Logger.warn("deletion of file failed: %s", newFile);
 		}
-		renderArgs.put("results", results);
+		renderArgs.put(RESULTS, results);
+		renderArgs.put(FILENAME, filename);
 		render();
 	}
 

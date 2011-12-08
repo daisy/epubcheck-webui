@@ -1,8 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'epubcheck results' /}
 
-<h1>epubcheck results</h1>
+<h1>epubcheck results for ${filename}</h1>
 
+%{ if(results.size == 0) { }%
+	<h2>Epub-file is valid</h2>
+%{ } else { }%
 <table border='1'>
 	<tr>
 		<th>Type</th>
@@ -21,3 +24,4 @@
 	</tr>
 #{/list}
 </table>
+%{ } }%
