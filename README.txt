@@ -26,7 +26,9 @@ The lib folder of idpf-epubcheck must contain the following:
 lib/
   commons-compress-1.2.jar
   epubcheckbackend.jar
+  epubcheck-3.0b3.jar
   flute.jar
+  guava-10.0.1.jar
   jing.jar
   sac.jar
   saxon9he.jar
