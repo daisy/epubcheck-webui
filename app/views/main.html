@@ -8,9 +8,15 @@
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/tablesort.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
     </head>
     <body>
-        #{doLayout /}
+		<header>
+			<a href="http://www.idpf.org" title="IDPF homepage">
+					<img id="header_image" src="@{'/public/images/idpf-logo.gif'}" alt="IDPF logo">
+			</a>
+		</header>
+		#{doLayout /}
     </body>
 </html>

@@ -19,25 +19,34 @@ public class Application extends Controller {
 		render();
 	}
 
-	public static final String RESULTS = "results";
-	public static final String FILENAME = "filename";
-
+	private static final String RESULTS = "results";
+	private static final String FILENAME = "filename";
+	private static final String FILEERROR = "fileError";
+	
 	public static void validate(final FileUpload input_file) {
-		final String origFileName = input_file.getFileName();
-		final String filename = new File(origFileName).getName();
-		final File newFile = input_file.asFile(new File(play.Play.tmpDir, Codec
-				.UUID() + ".epub"));
-		final List<Map<String, String>> results = runEpubcheck(newFile
-				.getPath());
-		final boolean deleted = newFile.delete();
-		if (!deleted) {
-			Logger.warn("deletion of file failed: %s", newFile);
+		List<Map<String, String>> results = null;
+		String filename = null;
+		boolean fileError = false;
+		if (input_file == null) {
+			fileError = true;
 		}
+		else {
+			final String origFileName = input_file.getFileName();
+			filename = new File(origFileName).getName();
+			final File newFile = input_file.asFile(new File(play.Play.tmpDir, Codec
+					.UUID() + ".epub"));
+			results = runEpubcheck(newFile.getPath());
+			final boolean deleted = newFile.delete();
+			if (!deleted) {
+				Logger.warn("deletion of file failed: %s", newFile);
+			}
+		}
+		renderArgs.put(FILEERROR, fileError);
 		renderArgs.put(RESULTS, results);
 		renderArgs.put(FILENAME, filename);
 		render();
 	}
-
+		
 	private static List<Map<String, String>> runEpubcheck(final String file) {
 		final List<Issue> issues = EpubcheckBackend.run(file);
 		final List<Map<String, String>> results = new ArrayList<Map<String, String>>();
