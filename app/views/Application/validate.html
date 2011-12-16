@@ -1,8 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'EPUB Validation Results' /}
+#{script 'jquery.tablesorter.min.js' /}
+#{script 'colResizable-1.3.min.js' /}
+#{script 'table.js' /}
 
 %{if(fileError == true) { }%
-	<h1>epubcheck error</h1>
+	<h1>Error</h1>
 	<p>Error reading input file. Please ensure that it is <em>10MB or less</em> in size.</p>
 
 %{ } else { }%
@@ -14,14 +17,14 @@
 
 	%{ } else { }%
 		<p>The following errors were found in '<em>${filename}</em>':</p>
-		<table>
+		<table class="tablesorter">
 			<thead>
 				<tr>
-					<th><a class="thlink" href="#">Type</a></th>
-					<th><a class="thlink" href="#">File</a></th>
-					<th>Line</th>
-					<th>Position</th>
-					<th><a class="thlink" href="#">Message</a></th>
+					<th><a href="#" title="Sort by type">Type</a></th>
+					<th><a href="#" title="Sort by file">File</a></th>
+					<th><a href="#" title="Sort by line number">Line</a></th>
+					<th><a href="#" title="Sort by position">Position</a></th>
+					<th><a href="#" title="Sort by message">Message</a></th>
 				</tr>
 			</thead>
 			<tbody>

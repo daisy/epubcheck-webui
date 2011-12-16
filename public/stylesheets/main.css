@@ -17,6 +17,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Georgia,"Times New Roman",Times,serif;
 }
 
+em {
+	font-weight: bold;
+}
+
 table {
 	font-size: 15px;
 	border-width: 1px;
@@ -26,13 +30,13 @@ table {
 
 table th {
 	background-color: #69C;
-	padding: 8px;
+	text-indent: 8px;
 	border-style: solid;
 	border-color: gray;
 }
 
 table td {
-	padding: 8px;
+	text-indent: 8px;
 	border-style: solid;
 	border-color: gray;
 	
