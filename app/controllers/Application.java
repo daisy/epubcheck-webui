@@ -25,6 +25,18 @@ public class Application extends Controller {
 	private static final String FILENAME = "filename";
 	private static final String FILEERROR = "fileError";
 
+	private static final Function<Issue, Map<String, String>> issueToMap = new Function<EpubcheckBackend.Issue, Map<String, String>>() {
+		public Map<String, String> apply(Issue issue) {
+			Map map = Maps.newHashMapWithExpectedSize(5);
+			map.put("type", issue.type);
+			map.put("file", issue.file);
+			map.put("lineNr", Integer.toString(issue.lineNo));
+			map.put("position", Integer.toString(issue.colNo));
+			map.put("message", issue.txt);
+			return Collections.unmodifiableMap(map);
+		}
+	};
+	
 	public static void index() {
 		render();
 	}
@@ -54,15 +66,4 @@ public class Application extends Controller {
 		return Lists.transform(EpubcheckBackend.run(file), issueToMap);
 	}
 
-	private static Function<Issue, Map<String, String>> issueToMap = new Function<EpubcheckBackend.Issue, Map<String, String>>() {
-		public Map<String, String> apply(Issue issue) {
-			Map map = Maps.newHashMapWithExpectedSize(5);
-			map.put("type", issue.type);
-			map.put("file", issue.file);
-			map.put("lineNr", Integer.toString(issue.lineNo));
-			map.put("position", Integer.toString(issue.colNo));
-			map.put("message", issue.txt);
-			return Collections.unmodifiableMap(map);
-		}
-	};
 }
