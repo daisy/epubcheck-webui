@@ -28,7 +28,7 @@ public class Application extends Controller {
 
 	private static final Function<Issue, Map<String, String>> issueToMap = new Function<Issue, Map<String, String>>() {
 		public Map<String, String> apply(Issue issue) {
-			Map map = Maps.newHashMapWithExpectedSize(5);
+			Map<String, String> map = Maps.newHashMapWithExpectedSize(5);
 			map.put("type", issue.type);
 			map.put("file", issue.file);
 			map.put("lineNr", Integer.toString(issue.lineNo));
