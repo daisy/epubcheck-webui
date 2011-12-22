@@ -10,10 +10,10 @@
 
 %{ } else { }%
 
-	<h1>EPUB Validation Results</h1> 
+	<h1>EPUB ${version} Validation Results</h1> 
 	
-	%{ if(results.size == 0) { }%
-		<p>Congratulations, no problems were found in '<em>${filename}</em>'.</p>
+	%{ if(results.isEmpty()) { }%
+		<p>Congratulations! No problems were found in '<em>${filename}</em>'.</p>
 
 	%{ } else { }%
 		<p>The following problems were found in '<em>${filename}</em>':</p>
