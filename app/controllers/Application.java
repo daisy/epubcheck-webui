@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.daisy.validation.epubcheck.EpubcheckBackend;
 import org.daisy.validation.epubcheck.Issue;
+import org.daisy.validation.epubcheck.Issue.Type;
 
 import play.Logger;
 import play.data.FileUpload;
@@ -29,7 +30,7 @@ public class Application extends Controller {
 	private static final Function<Issue, Map<String, String>> issueToMap = new Function<Issue, Map<String, String>>() {
 		public Map<String, String> apply(Issue issue) {
 			Map<String, String> map = Maps.newHashMapWithExpectedSize(5);
-			map.put("type", issue.type);
+			map.put("type", issue.type.toString());
 			map.put("file", issue.file);
 			map.put("lineNr", Integer.toString(issue.lineNo));
 			map.put("position", Integer.toString(issue.colNo));
@@ -65,13 +66,13 @@ public class Application extends Controller {
 
 	private static List<Map<String, String>> runEpubcheck(final String file) {
 		List<Issue> results = EpubcheckBackend.run(file);
-		if (results.get(0).type == "Version") {
+		if (results.get(0).type == Type.VERSION) {
 			renderArgs.put(VERSION, results.get(0).txt);
 		}
 		return Collections.unmodifiableList(Lists.newArrayList(Collections2
 				.transform(Collections2.filter(results, new Predicate<Issue>() {
 					public boolean apply(Issue issue) {
-						return issue.type != "Version";
+						return issue.type != Type.VERSION;
 					}
 				}), issueToMap)));
 	}
