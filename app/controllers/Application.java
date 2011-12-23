@@ -21,7 +21,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class Application extends Controller {
-
 	private static final String RESULTS = "results";
 	private static final String VERSION = "version";
 	private static final String FILENAME = "filename";
