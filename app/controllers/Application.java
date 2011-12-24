@@ -39,24 +39,31 @@ public class Application extends Controller {
 	};
 
 	public static void index() {
+		logVisitor();
 		render();
 	}
 
-	public static void validate(final FileUpload input_file) {
-		Iterable<Map<String, String>> results = null;
+	public static void validate(final FileUpload inputFile) {
+		
+		List<Map<String, String>> results = null;
 		String filename = null;
-		boolean fileError = input_file == null;
+		boolean fileError = inputFile == null;
 		if (!fileError) {
-			final String origFileName = input_file.getFileName();
+			final String origFileName = inputFile.getFileName();
 			filename = new File(origFileName).getName();
-			final File newFile = input_file.asFile(new File(play.Play.tmpDir,
-					Codec.UUID() + ".epub"));
+			final File newFile = inputFile.asFile(new File(play.Play.tmpDir, Codec.UUID() + ".epub"));
 			results = runEpubcheck(newFile.getPath());
 			final boolean deleted = newFile.delete();
 			if (!deleted) {
 				Logger.warn("deletion of file failed: %s", newFile);
 			}
 		}
+		int numIssues = 0;
+		if (!fileError) {
+			numIssues = results.size();
+		}
+		logValidateAction(filename, fileError, numIssues);
+		
 		renderArgs.put(FILEERROR, fileError);
 		renderArgs.put(RESULTS, results);
 		renderArgs.put(FILENAME, filename);
@@ -74,5 +81,20 @@ public class Application extends Controller {
 						return issue.type != Type.VERSION;
 					}
 				}), issueToMap)));
+	}
+	
+	private static void logVisitor() {
+		Logger.info("Visitor user-agent %s",request.headers.get("user-agent").toString());
+		Logger.info("Visitor IP %s", request.remoteAddress);
+	}
+	
+	private static void logValidateAction(String filename, boolean fileError, int numIssues) {
+		Logger.info("Validation from IP %s", request.remoteAddress);
+		if (fileError) {
+			Logger.info("File error (possible cause: too large)", filename);
+		}
+		else {
+			Logger.info("%d issues found in file '%s'.", numIssues, filename);
+		}
 	}
 }
