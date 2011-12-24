@@ -65,7 +65,8 @@ public class Application extends Controller {
 
 	private static List<Map<String, String>> runEpubcheck(final String file) {
 		List<Issue> results = EpubcheckBackend.run(file);
-		if (results.get(0).type == Type.VERSION) {
+		//FIXME reports false positive if jar not found
+		if (!results.isEmpty() && results.get(0).type == Type.VERSION) {
 			renderArgs.put(VERSION, results.get(0).txt);
 		}
 		return Collections.unmodifiableList(Lists.newArrayList(Collections2
