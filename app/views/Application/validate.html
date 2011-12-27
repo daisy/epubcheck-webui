@@ -4,19 +4,22 @@
 #{script 'colResizable-1.3.min.js' /}
 #{script 'table.js' /}
 
+<section id="results">
 %{if(fileError == true) { }%
 	<h1>Error</h1>
 	<p>Error reading input file. Please ensure that it is <em>10MB or less</em> in size.</p>
 
 %{ } else { }%
 
-	<h1>EPUB ${version} Validation Results</h1> 
+	<h1>EPUB Validation Results</h1> 
+	
+	<p><em>Detected version:</em> EPUB ${version}</p>
 	
 	%{ if(results.isEmpty()) { }%
-		<p>Congratulations! No problems were found in '<em>${filename}</em>'.</p>
+		<p><em>Results: </em> Congratulations! No problems were found in '<em class="it">${filename}</em>'.</p>
 
 	%{ } else { }%
-		<p>The following problems were found in '<em>${filename}</em>':</p>
+		<p><em>Results: </em> The following problems were found in '<em class="it">${filename}</em>':</p>
 		<table class="tablesorter">
 			<thead>
 				<tr>
@@ -31,7 +34,7 @@
 			#{list items:results, as:'result'}
 				<tr>
 				    <td>${result.type}</td>
-				    <td>${result.file}</td>
+				    <td class="file">${result.file}</td>
 				    <td>${result.lineNr}</td>
 				    <td>${result.position}</td>
 				    <td>${result.message}</td>
@@ -43,3 +46,4 @@
 %{ } }%
 
 <p><a href="../">Back to validator</a></p>
+</section>

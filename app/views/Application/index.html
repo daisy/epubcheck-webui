@@ -1,17 +1,20 @@
 #{extends 'main.html' /}
 #{set title:'EPUB Validation' /}
 
-
-<h1>EPUB validation</h1>
+<section id="main">
+<h1>EPUB Validation</h1>
 <p>Submit an EPUB document for validation.  Your file must be 10MB or less.</p>
 <form action="@{Application.validate()}" method="POST" enctype="multipart/form-data">
     <p>
-        <input type="file" name="input_file" id="input_file" />
+        <input type="file" name="inputFile" id="inputFile" />
     </p>
     <p>
         <input type="submit" value="Validate" />
     </p>
 </form>
+</section>
 
+<section id="about">
 <h2>About this site</h2>
-<p>This site uses <a href="http://code.google.com/p/epubcheck/" title="EpubCheck project on googlecode">EpubCheck 3</a> to provide validation information for EPUB 2.0 and 3.0 documents. If you are creating commercial EPUBs in volume, you must install EpubCheck instead of using this site.</p>
+<p>This site uses <a href="http://code.google.com/p/epubcheck/" title="EpubCheck project on googlecode">EpubCheck</a> to provide validation information for EPUB 2 and 3 documents. If you are creating commercial EPUBs in volume, you must install EpubCheck instead of using this site.</p>
+</section>
