@@ -25,7 +25,6 @@ table {
 	font-size: 15px;
 	border-width: 1px;
 	border-collapse: collapse;
-	
 }
 
 table th {
@@ -45,4 +44,18 @@ table td {
 table a {
 	color: inherit;
 	text-decoration: none;
+}
+
+section {
+	width: 50%;
+}
+section#about {
+	font-size: smaller;
+}
+section#results {
+	width: 90%;
+}
+
+td.file {
+	white-space: nowrap;
 }
