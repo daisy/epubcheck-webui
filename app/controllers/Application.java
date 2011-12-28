@@ -85,12 +85,18 @@ public class Application extends Controller {
 	}
 	
 	private static void logVisitor() {
-		Logger.info("Visitor user-agent %s",request.headers.get("user-agent").toString());
-		Logger.info("Visitor IP %s", request.remoteAddress);
+		if (request.headers.get("user-agent") != null) {
+			Logger.info("Visitor user-agent %s",request.headers.get("user-agent").toString());
+		}
+		if (request.remoteAddress != null) {
+			Logger.info("Visitor IP %s", request.remoteAddress.toString());
+		}
 	}
 	
 	private static void logValidateAction(String filename, boolean fileError, int numIssues) {
-		Logger.info("Validation from IP %s", request.remoteAddress);
+		if (request.remoteAddress != null) {
+			Logger.info("Validation from IP %s", request.remoteAddress.toString());
+		}
 		if (fileError) {
 			Logger.info("File error (possible cause: too large)", filename);
 		}

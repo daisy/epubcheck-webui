@@ -13,7 +13,15 @@
 
 	<h1>EPUB Validation Results</h1> 
 	
-	<p><em>Detected version:</em> EPUB ${version}</p>
+	<p><em>Detected version:</em> 
+		%{ if(version == null) { }%
+			Could not determine version.
+		
+		%{ } else { }%
+			EPUB ${version}
+		
+		%{ } }%
+	</p>
 	
 	%{ if(results.isEmpty()) { }%
 		<p><em>Results: </em> Congratulations! No problems were found in '<em class="it">${filename}</em>'.</p>
