@@ -1,8 +1,7 @@
 #{extends 'main.html' /}
-#{set title:'EPUB Validation' /}
+#{set title:'EPUB Validator (beta)' /}
 
 <section id="main">
-<h1>EPUB Validation</h1>
 <p>Submit an EPUB document for validation.  Your file must be 10MB or less.</p>
 <form action="@{Application.validate()}" method="POST" enctype="multipart/form-data">
     <p>

@@ -20,7 +20,9 @@ h1, h2, h3, h4, h5, h6 {
 em {
 	font-weight: bold;
 }
-
+em.it {
+    font-weight: normal;
+}
 table {
 	font-size: 15px;
 	border-width: 1px;
@@ -48,6 +50,7 @@ table a {
 
 section {
 	width: 50%;
+	margin-top: 40px;
 }
 section#about {
 	font-size: smaller;
@@ -58,4 +61,14 @@ section#results {
 
 td.file {
 	white-space: nowrap;
+}
+
+footer {
+	margin-top: 40px;
+	border-top: thin solid gray;
+	font-size: small;
+}
+
+header h1 {
+    font-size: 30px;
 }

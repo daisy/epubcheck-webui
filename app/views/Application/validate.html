@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'EPUB Validation Results' /}
+#{set title:'EPUB Validator (beta) Results' /}
 #{script 'jquery.tablesorter.min.js' /}
 #{script 'colResizable-1.3.min.js' /}
 #{script 'table.js' /}
@@ -11,23 +11,22 @@
 
 %{ } else { }%
 
-	<h1>EPUB Validation Results</h1> 
+	<h1>Results</h1> 
 	
 	<p><em>Detected version:</em> 
-		%{ if(version == null) { }%
+		%{ if(epubVersion == null) { }%
 			Could not determine version.
 		
 		%{ } else { }%
-			EPUB ${version}
+			EPUB ${epubVersion}
 		
 		%{ } }%
 	</p>
-	
 	%{ if(results.isEmpty()) { }%
-		<p><em>Results: </em> Congratulations! No problems were found in '<em class="it">${filename}</em>'.</p>
-
+		<p><em>Results: </em> Congratulations! No problems were found in <em class="it">${filename}</em>.</p>
+			
 	%{ } else { }%
-		<p><em>Results: </em> The following problems were found in '<em class="it">${filename}</em>':</p>
+		<p><em>Results: </em> The following problems were found in <em class="it">${filename}</em>:</p>
 		<table class="tablesorter">
 			<thead>
 				<tr>
@@ -51,6 +50,8 @@
 			</tbody>
 		</table>
 	%{ } }%
+	<p>Validated using <a href="http://code.google.com/p/epubcheck/" title="EpubCheck project on googlecode">EpubCheck</a> version ${epubcheckVersion}.</p>
+	
 %{ } }%
 
 <p><a href="../">Back to validator</a></p>

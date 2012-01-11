@@ -22,9 +22,10 @@ import com.google.common.collect.Maps;
 
 public class Application extends Controller {
 	private static final String RESULTS = "results";
-	private static final String VERSION = "version";
+	private static final String EPUB_VERSION = "epubVersion";
 	private static final String FILENAME = "filename";
 	private static final String FILEERROR = "fileError";
+	private static final String EPUBCHECK_VERSION = "epubcheckVersion";
 
 	private static final Function<Issue, Map<String, String>> issueToMap = new Function<Issue, Map<String, String>>() {
 		public Map<String, String> apply(Issue issue) {
@@ -73,13 +74,20 @@ public class Application extends Controller {
 	private static List<Map<String, String>> runEpubcheck(final String file) {
 		List<Issue> results = EpubcheckBackend.run(file);
 		//FIXME reports false positive if jar not found
-		if (!results.isEmpty() && results.get(0).type == Type.VERSION) {
-			renderArgs.put(VERSION, results.get(0).txt);
+		if (results.size() >= 2) {
+			if (results.get(0).type == Type.EPUBCHECK_VERSION) {
+				renderArgs.put(EPUBCHECK_VERSION, results.get(0).txt);
+			}
+			if (results.get(1).type == Type.EPUB_VERSION) {
+				renderArgs.put(EPUB_VERSION, results.get(1).txt);
+			}
+			
 		}
+			
 		return Collections.unmodifiableList(Lists.newArrayList(Collections2
 				.transform(Collections2.filter(results, new Predicate<Issue>() {
 					public boolean apply(Issue issue) {
-						return issue.type != Type.VERSION;
+						return issue.type != Type.EPUB_VERSION && issue.type != Type.EPUBCHECK_VERSION;
 					}
 				}), issueToMap)));
 	}
