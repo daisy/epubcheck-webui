@@ -6,7 +6,6 @@
         <meta charset="${_response_encoding}">
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
         #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 		
         #{get 'moreScripts' /}
@@ -16,7 +15,7 @@
 			<a href="http://www.idpf.org" title="IDPF homepage">
 					<img id="header_image" src="@{'/public/images/idpf-logo.gif'}" alt="IDPF logo">
 			</a>
-			<h1><a href="http://validator.idpf.org">EPUB Validator (beta)</a></h1>
+			<h1><a href="@{Application.index()}" title="EPUB Validator homepage">EPUB Validator (beta)</a></h1>
 		</header>
 		#{doLayout /}
 		<footer>

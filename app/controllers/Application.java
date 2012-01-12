@@ -10,6 +10,7 @@ import org.daisy.validation.epubcheck.Issue;
 import org.daisy.validation.epubcheck.Issue.Type;
 
 import play.Logger;
+import play.Play;
 import play.data.FileUpload;
 import play.libs.Codec;
 import play.mvc.Controller;
@@ -26,7 +27,7 @@ public class Application extends Controller {
 	private static final String FILENAME = "filename";
 	private static final String FILEERROR = "fileError";
 	private static final String EPUBCHECK_VERSION = "epubcheckVersion";
-
+	
 	private static final Function<Issue, Map<String, String>> issueToMap = new Function<Issue, Map<String, String>>() {
 		public Map<String, String> apply(Issue issue) {
 			Map<String, String> map = Maps.newHashMapWithExpectedSize(5);
