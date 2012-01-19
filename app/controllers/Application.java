@@ -49,6 +49,7 @@ public class Application extends Controller {
 		boolean fileError = inputFile == null;
 		if (!fileError) {
 			results = runEpubcheck(inputFile.asFile().getPath());
+			filename = inputFile.getFileName();
 		}
 		int numIssues = 0;
 		if (!fileError) {
