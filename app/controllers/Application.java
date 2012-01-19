@@ -1,6 +1,5 @@
 package controllers;
 
-import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +9,7 @@ import org.daisy.validation.epubcheck.Issue;
 import org.daisy.validation.epubcheck.Issue.Type;
 
 import play.Logger;
-import play.Play;
 import play.data.FileUpload;
-import play.libs.Codec;
 import play.mvc.Controller;
 
 import com.google.common.base.Function;
@@ -51,14 +48,7 @@ public class Application extends Controller {
 		String filename = null;
 		boolean fileError = inputFile == null;
 		if (!fileError) {
-			final String origFileName = inputFile.getFileName();
-			filename = new File(origFileName).getName();
-			final File newFile = inputFile.asFile(new File(play.Play.tmpDir, Codec.UUID() + ".epub"));
-			results = runEpubcheck(newFile.getPath());
-			final boolean deleted = newFile.delete();
-			if (!deleted) {
-				Logger.warn("deletion of file failed: %s", newFile);
-			}
+			results = runEpubcheck(inputFile.asFile().getPath());
 		}
 		int numIssues = 0;
 		if (!fileError) {
