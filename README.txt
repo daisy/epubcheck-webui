@@ -1,7 +1,4 @@
-# idpf-epubcheck
-
-TODOs for this file:
- * finalize required versions of play and epubcheck
+# web-based epubcheck
 
 ## Overview
 
@@ -9,52 +6,34 @@ This web-based validator, built around the open source tool [http://code.google.
 
 The interface allows the upload of one file at a time with a limit of 10MB per file.  If validation fails, a list of errors is shown.
 
-
-## Building
-
-Requirements:
-
- * [www.playframework.org/ Play! Framework], version 1.2.4
- * Java runtime 6
- * [http://code.google.com/p/daisy-pipeline/source/browse/?repo=sandbox#hg%2Fidpf-epubcheck idpf-epubcheck]
- * [http://code.google.com/p/daisy-pipeline/source/browse/?repo=sandbox#hg%2FEpubcheckBackend EpubcheckBackend]
- * [http://code.google.com/p/epubcheck/downloads/list epubcheck-3.0b3.jar]
-
-Build EpubcheckBackend from the command line and copy the jar into idpf-epubcheck/lib.
-
-The lib folder of idpf-epubcheck must contain the following:
-lib/
-  commons-compress-1.2.jar
-  epubcheckbackend.jar
-  epubcheck-3.0b3.jar
-  flute.jar
-  guava-10.0.1.jar
-  jing.jar
-  sac.jar
-  saxon9he.jar
-
-This can be accomplished by building the code locally using eclipse.
-
+ 
 ## Installation on Amazon EC2
 
 Create an [http://aws.amazon.com AWS] account and add an EC2 instance.  The free 'micro' instance is sufficient for testing purposes.
 
 Log in to your instance via SSH.
 
+Ensure that the following are installed:
+ * Mercurial client
+ * Java runtime 6
+
 Install the play framework on your EC2 instance:
  * $ wget http://download.playframework.org/releases/play-1.2.4.zip
  * $ unzip
 
-Transfer your local idpf-epubcheck code, once you've verified it works. 
+Retrieve the web-based EPUB Check code:
+ * $ hg clone https://code.google.com/p/daisy-pipeline.epubcheck/ 
+ 
+This code includes the web UI plus a prebuilt version of EPUBCheck and all its required libraries.
 
-It could be helpful to alias the 'play' command on your server by adding ~/play-1.2.4 to your path.
+Tip: It could be helpful to alias the 'play' command on your server by adding ~/play-1.2.4 to your path.
 
 Verify that the application works in local mode:
- * $ cd idpf-epubcheck
+ * $ cd daisy-pipeline.epubcheck/epubcheck-web
  * $ play start
  * $ curl http://localhost:9000
 
-Curl should return the raw HTML of the first page of the epubcheck web UI (the file upload form).  If this is what you get, then it works!  If not, check the log in idpf-epubcheck/logs/system.out. 
+Curl should return the raw HTML of the first page of the epubcheck web UI (the file upload form).  If this is what you get, then it works!  If not, check the log in daisy-pipeline.epubcheck/epubcheck-web/logs/application.log. 
 
 Now you can configure your appliation for public use.  
 
@@ -89,5 +68,12 @@ Open your browser, point to your public IP, and see if it works!
 
 ### Error: Could not bind on port 80
 
- * Did you open port 80?
+ * Did you open port 80 via the AWS Security Groups settings? (see above)
  * Is another process using port 80?  Check with the netstat command
+ 
+### Restarting the server
+
+ * $ cd daisy-pipeline.epubcheck/epubcheck-web
+ * $ sudo kill `cat server.pid`
+ * $ rm server.pid
+ * $ sudo play start
