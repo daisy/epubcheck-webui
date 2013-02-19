@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.daisy.validation.epubcheck.EpubcheckBackend;
+import org.daisy.validation.epubcheck.EpubCheckInvoker;
 import org.daisy.validation.epubcheck.Issue;
 import org.daisy.validation.epubcheck.Issue.Type;
 
@@ -64,7 +64,7 @@ public class Application extends Controller {
 	}
 
 	private static List<Map<String, String>> runEpubcheck(final String file) {
-		List<Issue> results = EpubcheckBackend.run(file);
+		List<Issue> results = EpubCheckInvoker.run(file);
 		//FIXME reports false positive if jar not found
 		if (results.size() >= 2) {
 			if (results.get(0).type == Type.EPUBCHECK_VERSION) {
