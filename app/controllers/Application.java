@@ -28,10 +28,14 @@ public class Application extends Controller {
 	private static final Function<Issue, Map<String, String>> issueToMap = new Function<Issue, Map<String, String>>() {
 		public Map<String, String> apply(Issue issue) {
 			Map<String, String> map = Maps.newHashMapWithExpectedSize(5);
+			
+			String lineNum = issue.lineNo == -1 ? "-" : Integer.toString(issue.lineNo);
+			String position = issue.colNo == -1 ? "-" : Integer.toString(issue.colNo);
+			
 			map.put("type", issue.type.toString());
 			map.put("file", issue.file);
-			map.put("lineNr", Integer.toString(issue.lineNo));
-			map.put("position", Integer.toString(issue.colNo));
+			map.put("lineNr", lineNum);
+			map.put("position", position);
 			map.put("message", issue.txt);
 			return Collections.unmodifiableMap(map);
 		}
