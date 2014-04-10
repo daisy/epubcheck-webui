@@ -3,7 +3,7 @@ EPUB Check Web UI
 
 ## Overview
 
-This web-based validator, built around the open source tool [epubcheck](http://code.google.com/p/epubcheck/), validates EPUB files, version 2.0 and later. It is notably deployed at [http://validator.idpf.org/](http://validator.idpf.org/).
+This web-based validator, built around the open source tool [epubcheck](https://github.com/idpf/epubcheck), validates EPUB files, version 2.0 and later. It is notably deployed at [http://validator.idpf.org/](http://validator.idpf.org/).
 
 The interface allows the upload of one file at a time with a limit of 10MB per file.  If validation fails, a list of errors is shown.
 
