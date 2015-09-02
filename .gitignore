@@ -1,6 +1,7 @@
 # Play Framework
 logs
 tmp
+server.pid
 
 
 # OS Files
@@ -16,3 +17,4 @@ Thumbs.db
 #vim files
 .*.sw?
 .*~
+/bin/
