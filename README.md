@@ -40,12 +40,12 @@ Tip: It could be helpful to alias the 'play' command on your server by adding pl
 Verify that the application works in local mode:
 
 ``` 
-$ cd daisy-pipeline.epubcheck/epubcheck-web
+$ cd epubcheck-webui
 $ play start
 $ curl http://localhost:9000
 ```
 
-Curl should return the raw HTML of the first page of the epubcheck web UI (the file upload form).  If this is what you get, then it works!  If not, check the log in daisy-pipeline.epubcheck/epubcheck-web/logs/application.log. 
+Curl should return the raw HTML of the first page of the epubcheck web UI (the file upload form).  If this is what you get, then it works!  If not, check the log in `epubcheck-webui/logs/application.log`. 
 
 ### Configure for public use
 
@@ -93,7 +93,7 @@ Open your browser, point to your public IP, and see if it works!
 ### Restarting the server
 
 ```
-$ cd daisy-pipeline.epubcheck/epubcheck-web
+$ cd epubcheck-webui
 $ sudo kill `cat server.pid`
 $ rm server.pid
 $ sudo play start
