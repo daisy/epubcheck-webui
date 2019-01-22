@@ -2,7 +2,7 @@
 #{set title:'EPUB Validator (beta)' /}
 
 <section id="main">
-<p>Submit an <a href="http://idpf.org/epub">EPUB</a> document for validation.  Your file must be 10MB or less.</p>
+<p>Submit an EPUB document for validation.  Your file must be 10MB or less.</p>
 <form action="@{Application.validate()}" method="POST" enctype="multipart/form-data">
     <p>
         <input type="file" name="inputFile" id="inputFile" />
@@ -15,6 +15,6 @@
 
 <section id="about">
 <h2>About this site</h2>
-<p>This site uses <a href="https://github.com/idpf/epubcheck" title="EpubCheck project on github">EpubCheck</a> to provide validation information for EPUB 2 and 3 documents. If you are creating commercial EPUBs in volume, you must install EpubCheck instead of using this site.</p>
-<p>Want to contribute? Go to <a href="https://github.com/IDPF/epubcheck/wiki/Contribute">https://github.com/IDPF/epubcheck/wiki/Contribute</a>.</p>
+<p>This site uses <a href="https://github.com/w3c/epubcheck" title="EPUBCheck project on github">EPUBCheck</a> to provide validation information for EPUB 2 and 3 documents. If you are creating commercial EPUBs in volume, you must install EPUBCheck instead of using this site.</p>
+<p>Want to contribute? Go to <a href="https://github.com/w3c/epubcheck/wiki/Contribute">https://github.com/w3c/epubcheck/wiki/Contribute</a>.</p>
 </section>

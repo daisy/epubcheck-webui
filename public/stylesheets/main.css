@@ -64,9 +64,13 @@ td.file {
 }
 
 footer {
-	margin-top: 40px;
 	border-top: thin solid gray;
 	font-size: small;
+	margin-top: 40px;
+}
+
+footer p {
+	line-height: 1em;
 }
 
 header h1 {

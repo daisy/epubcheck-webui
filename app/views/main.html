@@ -9,17 +9,39 @@
         <script src="@{'/public/javascripts/jquery-1.5.2.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 		
         #{get 'moreScripts' /}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-327448-7"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-327448-7');
+        </script>
     </head>
     <body>
 		<header>
-			<a href="http://www.idpf.org" title="IDPF homepage">
-					<img id="header_image" src="@{'/public/images/idpf-logo.gif'}" alt="IDPF logo">
-			</a>
 			<h1><a href="@{Application.index()}" title="EPUB Validator homepage">EPUB Validator (beta)</a></h1>
 		</header>
 		#{doLayout /}
 		<footer>
-			<p>Copyright 2012 International Digital Publishing Forum. All rights reserved. <a href="http://idpf.org/legal/terms-of-use">Terms of Use</a></p>
+            <p>This service is hosted by the <a href="http://www.daisy.org">DAISY Consortium</a>.</p>
+			<p class="copyright">
+                    <a rel="license" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 2019
+                    <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a>&reg;
+            
+                    (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+                    <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+                    <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>),
+                    All Rights Reserved.
+                    W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+                    <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+                    and <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+            
+                    rules apply. Your interactions with this site are in accordance
+                    with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+                    <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+                    statements.
+                </p>
 		</footer>
     </body>
 </html>
