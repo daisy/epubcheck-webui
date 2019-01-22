@@ -3,6 +3,9 @@ logs
 tmp
 server.pid
 
+# Eclipse files
+.settings
+.classpath
 
 # OS Files
 .DS_Store
@@ -18,3 +21,4 @@ Thumbs.db
 .*.sw?
 .*~
 /bin/
+
