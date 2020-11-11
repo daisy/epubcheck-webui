@@ -18,7 +18,7 @@ Log in to your instance via SSH.
 Ensure that the following are installed:
  
  * Git client
- * Java runtime 6
+ * Java runtime 7
 
 Install the play framework on your EC2 instance:
 
